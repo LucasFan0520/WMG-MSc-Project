@@ -1,0 +1,46 @@
+# C/C++ build artefacts
+*.exe
+*.o
+*.obj
+*.out
+*.a
+*.so
+*.dll
+*.dSYM/
+
+# Build directories created by the evaluation scripts
+.functional_build/
+**/build/
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating-system files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+

@@ -1,0 +1,23 @@
+file,line,severity,confidence,domain,subdomain,category,check_id,message,evidence
+/home/yichen/Desktop/Qwen_SDF07/F004.c,78,low,review,memory,memory_string,memory,dangerous_function:strncpy,strncpy can leave the destination unterminated unless null termination is proven,"strncpy(key, text + i + 1, klen);"
+/home/yichen/Desktop/Qwen_SDF07/F004.c,91,low,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(out + olen, v[k].val, vlen);"
+/home/yichen/Desktop/Qwen_SDF07/F004.c,105,low,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(out + olen, text + i, j - i + 1);"
+/home/yichen/Desktop/Qwen_SDF07/F005.c,41,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,lines[idx] = strdup(text);
+/home/yichen/Desktop/Qwen_SDF07/F009.c,62,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,g->descs[g->dc] = strdup(desc);
+/home/yichen/Desktop/Qwen_SDF07/F010.c,62,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,idx->vals[idx->vc] = strdup(val);
+/home/yichen/Desktop/Qwen_SDF07/F014.c,63,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,it->labels[it->lc] = strdup(label);
+/home/yichen/Desktop/Qwen_SDF07/F020.c,77,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->body[c->bc] = strdup(line);
+/home/yichen/Desktop/Qwen_SDF07/F023.c,64,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,m->tags[m->tgc] = strdup(tag);
+/home/yichen/Desktop/Qwen_SDF07/F024.c,64,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,b->authors[b->ac] = strdup(name);
+/home/yichen/Desktop/Qwen_SDF07/F027.c,99,low,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(sorted, rems, rc * sizeof(Rem));"
+/home/yichen/Desktop/Qwen_SDF07/F030.c,86,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(res, text, pre);"
+/home/yichen/Desktop/Qwen_SDF07/F030.c,87,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(res + pre, rules[i].new, new_len);"
+/home/yichen/Desktop/Qwen_SDF07/F030.c,88,medium,review,memory,memory_string,dangerous_function,dangerous_function:strcpy,strcpy is used without a proven safe source/destination bound,"strcpy(res + pre + new_len, pos + old_len);"
+/home/yichen/Desktop/Qwen_SDF07/F030.c,86,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 3,"memcpy(res, text, pre);"
+/home/yichen/Desktop/Qwen_SDF07/F030.c,87,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(res + pre, rules[i].new, new_len);"
+/home/yichen/Desktop/Qwen_SDF07/F030.c,88,high,confirmed,memory,memory_string,string,tainted_sink:strcpy,externally controlled input appears to reach strcpy argument 2,"strcpy(res + pre + new_len, pos + old_len);"
+/home/yichen/Desktop/Qwen_SDF07/F034.c,100,medium,likely,memory,memory_heap,memory,realloc_direct_assign,realloc result is assigned directly to the original pointer,"Note *tmp = realloc(tmp_notes, nnc * sizeof(Note));"
+/home/yichen/Desktop/Qwen_SDF07/F037.c,89,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(b->data + b->size, data, bytes);"
+/home/yichen/Desktop/Qwen_SDF07/F037.c,89,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(b->data + b->size, data, bytes);"
+/home/yichen/Desktop/Qwen_SDF07/F039.c,52,medium,likely,memory,memory_heap,memory,unchecked_allocation:calloc,calloc result does not appear to be checked for NULL nearby,"tabs[tc].cells[i] = calloc(cols, sizeof(char*));"
+/home/yichen/Desktop/Qwen_SDF07/F039.c,89,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,t->cells[r][c] = strdup(val);

@@ -1,0 +1,82 @@
+file,line,severity,confidence,domain,subdomain,category,check_id,message,evidence
+/home/yichen/Desktop/Qwen_SDF02/F001.c,64,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(new_text, p->text, old_len);"
+/home/yichen/Desktop/Qwen_SDF02/F001.c,66,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(new_text + old_len + 1, text, add_len + 1);"
+/home/yichen/Desktop/Qwen_SDF02/F001.c,47,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,p->id = strdup(id);
+/home/yichen/Desktop/Qwen_SDF02/F001.c,48,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,p->text = strdup(text);
+/home/yichen/Desktop/Qwen_SDF02/F001.c,78,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,p->text = strdup(text);
+/home/yichen/Desktop/Qwen_SDF02/F001.c,64,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(new_text, p->text, old_len);"
+/home/yichen/Desktop/Qwen_SDF02/F001.c,66,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(new_text + old_len + 1, text, add_len + 1);"
+/home/yichen/Desktop/Qwen_SDF02/F002.c,84,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(combined, tag1->msgs->text, len1);"
+/home/yichen/Desktop/Qwen_SDF02/F002.c,86,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(combined + len1 + 1, tag2->msgs->text, len2 + 1);"
+/home/yichen/Desktop/Qwen_SDF02/F002.c,53,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,t->name = strdup(tag);
+/home/yichen/Desktop/Qwen_SDF02/F002.c,60,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,m->text = strdup(msg);
+/home/yichen/Desktop/Qwen_SDF02/F002.c,74,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,new_tag->name = strdup(t3);
+/home/yichen/Desktop/Qwen_SDF02/F002.c,84,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(combined, tag1->msgs->text, len1);"
+/home/yichen/Desktop/Qwen_SDF02/F002.c,86,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(combined + len1 + 1, tag2->msgs->text, len2 + 1);"
+/home/yichen/Desktop/Qwen_SDF02/F003.c,47,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,a->expansion = strdup(exp);
+/home/yichen/Desktop/Qwen_SDF02/F003.c,51,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,a->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F003.c,52,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,a->expansion = strdup(exp);
+/home/yichen/Desktop/Qwen_SDF02/F003.c,67,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,a->name = strdup(new_name);
+/home/yichen/Desktop/Qwen_SDF02/F004.c,31,low,review,memory,memory_string,memory,dangerous_function:strncpy,strncpy can leave the destination unterminated unless null termination is proven,"strncpy(key, p + 1, len);"
+/home/yichen/Desktop/Qwen_SDF02/F004.c,68,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,v->value = strdup(val);
+/home/yichen/Desktop/Qwen_SDF02/F004.c,72,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,v->key = strdup(key);
+/home/yichen/Desktop/Qwen_SDF02/F004.c,73,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,v->value = strdup(val);
+/home/yichen/Desktop/Qwen_SDF02/F005.c,21,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,lines[idx] = strdup(text);
+/home/yichen/Desktop/Qwen_SDF02/F005.c,58,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,lines[idx] = strdup(text);
+/home/yichen/Desktop/Qwen_SDF02/F006.c,42,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,i->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F007.c,21,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,a->label = strdup(label);
+/home/yichen/Desktop/Qwen_SDF02/F007.c,22,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,a->note = strdup(note);
+/home/yichen/Desktop/Qwen_SDF02/F008.c,45,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,s->note = strdup(note);
+/home/yichen/Desktop/Qwen_SDF02/F008.c,49,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,s->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F008.c,51,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,s->note = strdup(note);
+/home/yichen/Desktop/Qwen_SDF02/F009.c,31,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,e->desc = strdup(desc);
+/home/yichen/Desktop/Qwen_SDF02/F009.c,58,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,g->name = strdup(group);
+/home/yichen/Desktop/Qwen_SDF02/F009.c,76,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,C->name = strdup(newG);
+/home/yichen/Desktop/Qwen_SDF02/F010.c,45,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,k->name = strdup(key);
+/home/yichen/Desktop/Qwen_SDF02/F010.c,52,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,v->value = strdup(val);
+/home/yichen/Desktop/Qwen_SDF02/F011.c,48,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,d->title = strdup(title);
+/home/yichen/Desktop/Qwen_SDF02/F011.c,49,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,d->body = strdup(body);
+/home/yichen/Desktop/Qwen_SDF02/F011.c,61,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,d->body = strdup(body);
+/home/yichen/Desktop/Qwen_SDF02/F012.c,47,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,p->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F012.c,48,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,p->note = strdup(note);
+/home/yichen/Desktop/Qwen_SDF02/F013.c,19,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,t->title = strdup(title);
+/home/yichen/Desktop/Qwen_SDF02/F014.c,53,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,i->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F014.c,54,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,i->note = strdup(note);
+/home/yichen/Desktop/Qwen_SDF02/F014.c,65,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,l->name = strdup(label);
+/home/yichen/Desktop/Qwen_SDF02/F015.c,68,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(new_note, k->note, len1);"
+/home/yichen/Desktop/Qwen_SDF02/F015.c,70,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(new_note + len1 + 1, r->note, len2 + 1);"
+/home/yichen/Desktop/Qwen_SDF02/F015.c,41,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F015.c,42,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->email = strdup(email);
+/home/yichen/Desktop/Qwen_SDF02/F015.c,43,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->phone = strdup(phone);
+/home/yichen/Desktop/Qwen_SDF02/F015.c,44,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,"c->note = strdup("""");"
+/home/yichen/Desktop/Qwen_SDF02/F015.c,56,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->note = strdup(text);
+/home/yichen/Desktop/Qwen_SDF02/F015.c,68,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(new_note, k->note, len1);"
+/home/yichen/Desktop/Qwen_SDF02/F015.c,70,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(new_note + len1 + 1, r->note, len2 + 1);"
+/home/yichen/Desktop/Qwen_SDF02/F016.c,35,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F016.c,36,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->email = strdup(email);
+/home/yichen/Desktop/Qwen_SDF02/F016.c,37,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->phone = strdup(phone);
+/home/yichen/Desktop/Qwen_SDF02/F016.c,64,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F016.c,65,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->email = strdup(email);
+/home/yichen/Desktop/Qwen_SDF02/F016.c,66,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->phone = strdup(phone);
+/home/yichen/Desktop/Qwen_SDF02/F017.c,33,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->key = strdup(line);
+/home/yichen/Desktop/Qwen_SDF02/F017.c,34,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->value = strdup(eq + 1);
+/home/yichen/Desktop/Qwen_SDF02/F017.c,64,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->value = strdup(val);
+/home/yichen/Desktop/Qwen_SDF02/F017.c,68,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->key = strdup(key);
+/home/yichen/Desktop/Qwen_SDF02/F017.c,69,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,c->value = strdup(val);
+/home/yichen/Desktop/Qwen_SDF02/F018.c,33,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,w->text = strdup(line);
+/home/yichen/Desktop/Qwen_SDF02/F018.c,67,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,w->text = strdup(rest);
+/home/yichen/Desktop/Qwen_SDF02/F019.c,36,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,a->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F019.c,68,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,a->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F020.c,39,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,current->title = strdup(line);
+/home/yichen/Desktop/Qwen_SDF02/F020.c,46,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,b->text = strdup(line);
+/home/yichen/Desktop/Qwen_SDF02/F020.c,94,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,r->title = strdup(rest);
+/home/yichen/Desktop/Qwen_SDF02/F020.c,104,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,b->text = strdup(line);
+/home/yichen/Desktop/Qwen_SDF02/F033.c,41,medium,likely,memory,memory_heap,memory,unchecked_allocation:strdup,strdup result does not appear to be checked for NULL nearby,e->name = strdup(name);
+/home/yichen/Desktop/Qwen_SDF02/F036.c,42,low,review,auxiliary,auxiliary_integer,integer,dangerous_function:atoi,atoi has no reliable error reporting for invalid numeric input,int len = atoi(payload);
+/home/yichen/Desktop/Qwen_SDF02/F037.c,84,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(b->data + b->size, data, size);"
+/home/yichen/Desktop/Qwen_SDF02/F037.c,84,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(b->data + b->size, data, size);"
+/home/yichen/Desktop/Qwen_SDF02/F039.c,49,medium,likely,memory,memory_heap,memory,unchecked_allocation:calloc,calloc result does not appear to be checked for NULL nearby,"t->cells[i] = calloc(cols, sizeof(char*));"
+/home/yichen/Desktop/Qwen_SDF02/F040.c,47,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(header, data, h_len);"
+/home/yichen/Desktop/Qwen_SDF02/F040.c,49,medium,review,memory,memory_copy,memory,dangerous_function:memcpy,memcpy requires a destination bound that is not proven here,"memcpy(payload, data + h_len, p_len);"
+/home/yichen/Desktop/Qwen_SDF02/F040.c,47,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(header, data, h_len);"
+/home/yichen/Desktop/Qwen_SDF02/F040.c,49,medium,confirmed,memory,memory_copy,memory,tainted_sink:memcpy,externally controlled input appears to reach memcpy argument 2,"memcpy(payload, data + h_len, p_len);"

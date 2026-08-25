@@ -1,0 +1,155 @@
+// F001.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Paragraph {
+    char *id;
+    char *text;
+    struct Paragraph *next;
+} Paragraph;
+
+Paragraph *head = NULL;
+Paragraph *tail = NULL;
+
+Paragraph *find_paragraph(const char *id) {
+    Paragraph *p = head;
+    while (p) {
+        if (strcmp(p->id, id) == 0) return p;
+        p = p->next;
+    }
+    return NULL;
+}
+
+void new_paragraph(const char *id, const char *text) {
+    if (find_paragraph(id)) return;
+    Paragraph *p = malloc(sizeof(Paragraph));
+    p->id = malloc(strlen(id) + 1);
+    strcpy(p->id, id);
+    p->text = malloc(strlen(text) + 1);
+    strcpy(p->text, text);
+    p->next = NULL;
+    if (tail) tail->next = p;
+    else head = p;
+    tail = p;
+}
+
+void append_paragraph(const char *id, const char *text) {
+    Paragraph *p = find_paragraph(id);
+    if (!p) return;
+    char *newtext = malloc(strlen(p->text) + strlen(text) + 1);
+    strcpy(newtext, p->text);
+    strcat(newtext, text);
+    free(p->text);
+    p->text = newtext;
+}
+
+void replace_paragraph(const char *id, const char *text) {
+    Paragraph *p = find_paragraph(id);
+    if (!p) return;
+    free(p->text);
+    p->text = malloc(strlen(text) + 1);
+    strcpy(p->text, text);
+}
+
+void delete_paragraph(const char *id) {
+    Paragraph *prev = NULL;
+    Paragraph *p = head;
+    while (p) {
+        if (strcmp(p->id, id) == 0) {
+            if (prev) prev->next = p->next;
+            else head = p->next;
+            if (tail == p) tail = prev;
+            free(p->id);
+            free(p->text);
+            free(p);
+            return;
+        }
+        prev = p;
+        p = p->next;
+    }
+}
+
+void show_paragraph(const char *id) {
+    Paragraph *p = find_paragraph(id);
+    if (!p) {
+        printf("NOT_FOUND\n");
+        return;
+    }
+    for (char *c = p->text; *c; c++) {
+        putchar(*c == ' ' ? '_' : *c);
+    }
+    putchar('\n');
+}
+
+void list_paragraphs(void) {
+    Paragraph *p = head;
+    int first = 1;
+    while (p) {
+        if (!first) putchar(' ');
+        printf("%s", p->id);
+        first = 0;
+        p = p->next;
+    }
+    putchar('\n');
+}
+
+void free_all(void) {
+    Paragraph *p = head;
+    while (p) {
+        Paragraph *next = p->next;
+        free(p->id);
+        free(p->text);
+        free(p);
+        p = next;
+    }
+}
+
+int main() {
+    char line[4096];
+    while (fgets(line, sizeof(line), stdin)) {
+        line[strcspn(line, "\n")] = 0;
+        if (strcmp(line, "END") == 0) break;
+        char cmd[16];
+        char id[256];
+        char text[4096];
+        if (sscanf(line, "%15s %255s", cmd, id) < 1) continue;
+        if (strcmp(cmd, "NEW") == 0) {
+            char *p = line + 4; // skip "NEW "
+            while (*p == ' ') p++;
+            char *id_start = p;
+            while (*p && *p != ' ') p++;
+            if (*p) *p++ = 0;
+            while (*p == ' ') p++;
+            new_paragraph(id_start, p);
+        } else if (strcmp(cmd, "APPEND") == 0) {
+            char *p = line + 7;
+            while (*p == ' ') p++;
+            char *id_start = p;
+            while (*p && *p != ' ') p++;
+            if (*p) *p++ = 0;
+            while (*p == ' ') p++;
+            append_paragraph(id_start, p);
+        } else if (strcmp(cmd, "REPLACE") == 0) {
+            char *p = line + 8;
+            while (*p == ' ') p++;
+            char *id_start = p;
+            while (*p && *p != ' ') p++;
+            if (*p) *p++ = 0;
+            while (*p == ' ') p++;
+            replace_paragraph(id_start, p);
+        } else if (strcmp(cmd, "DELETE") == 0) {
+            char *p = line + 7;
+            while (*p == ' ') p++;
+            delete_paragraph(p);
+        } else if (strcmp(cmd, "SHOW") == 0) {
+            char *p = line + 5;
+            while (*p == ' ') p++;
+            show_paragraph(p);
+        } else if (strcmp(cmd, "LIST") == 0) {
+            list_paragraphs();
+        }
+    }
+    free_all();
+    return 0;
+}

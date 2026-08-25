@@ -1,0 +1,105 @@
+/*
+ * F016.c
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct contact {
+    char *name;
+    char *email;
+    char *phone;
+    struct contact *next;
+} Contact;
+
+Contact *contacts = NULL;
+
+Contact *find_contact(const char *name) {
+    Contact *c = contacts;
+    while (c) {
+        if (strcmp(c->name, name) == 0) return c;
+        c = c->next;
+    }
+    return NULL;
+}
+
+void add_contact(const char *name, const char *email, const char *phone) {
+    if (find_contact(name)) return;
+    Contact *c = malloc(sizeof(Contact));
+    c->name = strdup(name);
+    c->email = strdup(email);
+    c->phone = strdup(phone);
+    c->next = contacts;
+    contacts = c;
+}
+
+void delete_contact(const char *name) {
+    Contact *prev = NULL, *c = contacts;
+    while (c) {
+        if (strcmp(c->name, name) == 0) {
+            if (prev) prev->next = c->next;
+            else contacts = c->next;
+            free(c->name);
+            free(c->email);
+            free(c->phone);
+            free(c);
+            return;
+        }
+        prev = c;
+        c = c->next;
+    }
+}
+
+void find_contact_cmd(const char *name) {
+    Contact *c = find_contact(name);
+    if (!c) {
+        printf("NOT_FOUND\n");
+        return;
+    }
+    printf("%s %s %s\n", c->name, c->email, c->phone);
+}
+
+void report_contacts(void) {
+    Contact *c = contacts;
+    while (c) {
+        printf("%s,%s,%s\n", c->name, c->email, c->phone);
+        c = c->next;
+    }
+}
+
+int main(int argc, char **argv) {
+    if (argc > 1) {
+        FILE *f = fopen(argv[1], "r");
+        if (f) {
+            char line[4096];
+            while (fgets(line, sizeof(line), f)) {
+                line[strcspn(line, "\n")] = 0;
+                char name[256], email[256], phone[256];
+                if (sscanf(line, "%255[^,],%255[^,],%255[^,]", name, email, phone) == 3) {
+                    add_contact(name, email, phone);
+                }
+            }
+            fclose(f);
+        }
+    }
+    char line[4096];
+    while (fgets(line, sizeof(line), stdin)) {
+        line[strcspn(line, "\n")] = 0;
+        if (strcmp(line, "END") == 0) break;
+        char cmd[32], arg1[256], arg2[256], arg3[256];
+        if (sscanf(line, "%31s %255[^,],%255[^,],%255[^,]", cmd, arg1, arg2, arg3) == 4) {
+            if (strcmp(cmd, "ADD") == 0) {
+                add_contact(arg1, arg2, arg3);
+            }
+        } else if (sscanf(line, "%31s %255s", cmd, arg1) == 2) {
+            if (strcmp(cmd, "DELETE") == 0) {
+                delete_contact(arg1);
+            } else if (strcmp(cmd, "FIND") == 0) {
+                find_contact_cmd(arg1);
+            } else if (strcmp(cmd, "REPORT") == 0) {
+                report_contacts();
+            }
+        }
+    }
+    return 0;
+}
